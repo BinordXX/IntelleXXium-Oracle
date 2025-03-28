@@ -6,7 +6,7 @@ import lightgbm as lgb
 import numpy as np
 
 def train_lightgbm_model(csv_path):
-    print("⚡ Training LightGBM Model...")
+    print("⚡ Training LightGBM Model....")
     
     # Load the data
     df = pd.read_csv(csv_path, dtype=str, low_memory=False)
