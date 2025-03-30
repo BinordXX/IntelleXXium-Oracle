@@ -13,8 +13,6 @@ st.title("🔮 IntelleXXium Oracle: Business Forecasting AI")
 # 📝 Description
 st.markdown("""
 Welcome to the **Oracle**. Upload your cleaned business data (CSV format), and let our trained neural prophet forecast your sales.
-
-This model was born from the fires of machine learning and tempered by performance. Let's unveil the future.
 """)
 
 # 📤 Upload CSV
@@ -28,11 +26,11 @@ if uploaded_file is not None:
         st.dataframe(input_df.head())
 
         # Predict Button
-        if st.button("🔮 Predict Future Sales"):
-            with st.spinner("Consulting the neural realm..."):
+        if st.button("Predict Future Sales"):
+            with st.spinner("allow model a munuite to make predictions..."):
                 result_df = predict_from_df(input_df)
 
-            st.success("Forecast complete! Behold the prophecies:")
+            st.success("Prediction complete!:")
             st.dataframe(result_df[['predicted_sales']].head())
 
             # 📥 Allow download of full predictions
