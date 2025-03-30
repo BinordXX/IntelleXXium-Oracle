@@ -13,5 +13,5 @@ def inspect_csv_columns(csv_path):
 
 if __name__ == "__main__":
     # Adjust path if needed
-    csv_file_path = "data/sales_data.csv"
+    csv_file_path = "data/feature_engineered_sales_data.csv"
     inspect_csv_columns(csv_file_path)

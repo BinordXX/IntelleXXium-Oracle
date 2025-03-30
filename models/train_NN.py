@@ -42,7 +42,7 @@ def train_nn_model(file_path):
     if df.shape[0] == 0:
         raise ValueError("No valid data left after cleaning. Please inspect the data.")
 
-    # Starting feature engineering process
+  
     print("Starting the training process...")
 
     # Example: Suppose 'sales' is the target column (you can replace this with your actual target)
@@ -115,4 +115,4 @@ def train_nn_model(file_path):
     print(f"Root Mean Squared Error (RMSE): {rmse:.4f}")
 
 if __name__ == "__main__":
-    train_nn_model("data/processed_sales_data.csv")
+    train_nn_model("data/feature_engineered_sales_data.csv")

@@ -9,7 +9,6 @@ def preprocess_sales_data(df):
         raise ValueError("Expected column 'order_date' not found. Check your CSV headers.")
 
     # Clean and parse
-    df = df[df['order_date'].str[0:2] != 'or']  # Remove rogue headers
     df['order_date'] = pd.to_datetime(df['order_date'], errors='coerce')
     
     # Check for missing values after parsing
@@ -59,9 +58,10 @@ def create_lag_features(df: pd.DataFrame, target: str = 'sales') -> pd.DataFrame
     df = df.dropna()
     
     return df
+
 if __name__ == "__main__":
-    # Load the CSV file
-    df = pd.read_csv("data/sales_data.csv")
+    # Load the preprocessed CSV file (processed_sales_data.csv)
+    df = pd.read_csv("data/processed_sales_data.csv")
     
     # Preprocess and feature engineering
     df = preprocess_sales_data(df)
@@ -73,6 +73,7 @@ if __name__ == "__main__":
     df = create_lag_features(df, target='sales')
     print("Data after lag feature creation:", df.head())  # Check the lag features
     
-    # After feature engineering, save or return the processed data
-    df.to_csv("data/processed_sales_data.csv", index=False)
-    print("Processed data saved as 'processed_sales_data.csv'.")
+    # After feature engineering, save the new dataset
+    df.to_csv("data/feature_engineered_sales_data.csv", index=False)
+    print("Feature-engineered data saved as 'feature_engineered_sales_data.csv'.")
+
