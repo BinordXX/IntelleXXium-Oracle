@@ -43,7 +43,7 @@ def train_nn_model(file_path):
         raise ValueError("No valid data left after cleaning. Please inspect the data.")
 
     # Starting feature engineering process
-    print("Starting feature engineering process...")
+    print("Starting the training process...")
 
     # Example: Suppose 'sales' is the target column (you can replace this with your actual target)
     target_column = 'sales'  
@@ -74,6 +74,10 @@ def train_nn_model(file_path):
     # Train the model
     print("Training the neural network model...")
     model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_val, y_val))
+    model.save("oracle_model.h5")
+    import joblib
+    joblib.dump(scaler, 'scaler.pkl')
+
 
     # Evaluate the model on the validation data
     val_loss = model.evaluate(X_val, y_val)
