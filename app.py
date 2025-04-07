@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from forecasts.future_predictor import predict_from_df
+import plotly.express as px
 
 st.set_page_config(page_title="IntelleXXium Oracle", layout="centered")
 
@@ -29,6 +30,21 @@ if uploaded_file is not None:
             st.subheader("Predicted Sales:")
             st.dataframe(result_df[['predicted_sales']].head())
 
+            # 📈 Trend Visualizations
+            st.subheader("📊 Trend Visualizations")
+
+            if 'order_date' in result_df.columns:
+                result_df['order_date'] = pd.to_datetime(result_df['order_date'])
+                result_df['month'] = result_df['order_date'].dt.month
+                result_df['weekday'] = result_df['order_date'].dt.weekday
+                result_df['year'] = result_df['order_date'].dt.year
+
+                st.plotly_chart(px.line(result_df, x='order_date', y='predicted_sales', title='Predicted Sales Over Time'))
+
+                st.plotly_chart(px.box(result_df, x='month', y='predicted_sales', title='Monthly Sales Distribution'))
+
+                st.plotly_chart(px.box(result_df, x='weekday', y='predicted_sales', title='Sales by Day of the Week'))
+
             # Download button for predictions
             csv = result_df.to_csv(index=False).encode("utf-8")
             st.download_button(
@@ -37,6 +53,7 @@ if uploaded_file is not None:
                 file_name="predicted_sales.csv",
                 mime="text/csv"
             )
+
     except Exception as e:
         st.error(f"⚠️ An error occurred: {e}")
 else:

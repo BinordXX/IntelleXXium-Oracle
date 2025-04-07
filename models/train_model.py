@@ -43,7 +43,7 @@ def train_sales_model(csv_path):
     model = RandomForestRegressor(n_estimators=100, verbose=2, n_jobs=-1, random_state=42)
     model.fit(X_train, y_train)
 
-    # Predict
+    # predict
     y_pred = model.predict(X_test)
 
     # Evaluate

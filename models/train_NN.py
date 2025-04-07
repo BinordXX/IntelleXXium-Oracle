@@ -93,7 +93,7 @@ def train_nn_model(file_path):
     y_val_non_zero = y_val[non_zero_indices]
     y_pred_non_zero = y_pred.flatten()[non_zero_indices]
 
-    # Calculate MAPE only on non-zero values
+    # Calculate MAPE only on non-zero values. 
     if len(y_val_non_zero) == 0:
         print("Warning: No valid non-zero values found in the target for MAPE calculation.")
         mape = float('inf')  # Set MAPE to infinity if no valid non-zero values
